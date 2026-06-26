@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react'
 import Logo from "./assets/Logo.png"   // ← Replace with your Coginx Studio logo
 import StudioImage from './assets/studio-image.jpg';   // Change filename if needed
 
+const WEBSITE_GIG_LINK = "https://www.fiverr.com/mibsam_baig/build-a-professional-website-for-your-restaurant-or-local-business";     // ← CHANGE THIS
+const CHATBOT_GIG_LINK  = "https://www.fiverr.com/mibsam_baig/build-a-custom-ai-chatbot-for-your-website-or-business";            // ← CHANGE THIS
+
 // ── CSS Variables injected globally
 const GlobalStyles = () => (
   <style>{`
@@ -247,7 +250,13 @@ function Services() {
           <h3 style={{ fontFamily:'var(--font-display)', fontSize:'28px', marginBottom:'32px', color:'var(--accent)' }}>Website Development</h3>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(340px,1fr))', gap:'24px' }}>
             {websitePackages.map((pkg, i) => (
-              <ServiceCard key={i} title={pkg.name} price={pkg.price} desc={pkg.desc} />
+              <ServiceCard 
+                key={i} 
+                title={pkg.name} 
+                price={pkg.price} 
+                desc={pkg.desc} 
+                link={WEBSITE_GIG_LINK}
+              />
             ))}
           </div>
         </div>
@@ -257,7 +266,13 @@ function Services() {
           <h3 style={{ fontFamily:'var(--font-display)', fontSize:'28px', marginBottom:'32px', color:'var(--accent)' }}>AI Chatbots</h3>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(340px,1fr))', gap:'24px' }}>
             {chatbotPackages.map((pkg, i) => (
-              <ServiceCard key={i} title={pkg.name} price={pkg.price} desc={pkg.desc} />
+              <ServiceCard 
+                key={i} 
+                title={pkg.name} 
+                price={pkg.price} 
+                desc={pkg.desc} 
+                link={CHATBOT_GIG_LINK}
+              />
             ))}
           </div>
         </div>
@@ -266,8 +281,8 @@ function Services() {
   )
 }
 
-// New Neon Service Card Component
-function ServiceCard({ title, price, desc }) {
+// Updated ServiceCard with custom link
+function ServiceCard({ title, price, desc, link }) {
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -286,23 +301,6 @@ function ServiceCard({ title, price, desc }) {
         overflow: 'hidden'
       }}
     >
-      {/* Optional Accent Tag */}
-      <div style={{ 
-        position: 'absolute', 
-        top: '20px', 
-        right: '20px', 
-        background: 'rgba(0,212,255,0.1)', 
-        border: '1px solid rgba(0,212,255,0.3)', 
-        borderRadius: '50px', 
-        padding: '3px 12px',
-        fontSize: '10px',
-        fontWeight: 700,
-        color: 'var(--accent)',
-        letterSpacing: '0.08em'
-      }}>
-        POPULAR
-      </div>
-
       <h4 style={{ 
         fontFamily: 'var(--font-display)', 
         fontSize: '21px', 
@@ -316,8 +314,7 @@ function ServiceCard({ title, price, desc }) {
         fontSize: '32px', 
         fontWeight: 700, 
         color: 'var(--accent)', 
-        marginBottom: '20px',
-        transition: 'all 0.3s'
+        marginBottom: '20px'
       }}>
         {price || "Custom Pricing"}
       </div>
@@ -332,7 +329,9 @@ function ServiceCard({ title, price, desc }) {
       </p>
 
       <a 
-        href="#contact" 
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
         style={{
           display: 'inline-block',
           background: hovered ? 'var(--accent)' : 'transparent',
@@ -346,7 +345,7 @@ function ServiceCard({ title, price, desc }) {
           textAlign: 'center'
         }}
       >
-        Get This Package
+        Get This Package on Fiverr
       </a>
     </div>
   )
