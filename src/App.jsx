@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import Logo from "./assets/logo.png"   // ← Replace with your Coginx Studio logo
+import Logo from "./assets/Logo.png"   // ← Replace with your Coginx Studio logo
 import StudioImage from './assets/studio-image.jpg';   // Change filename if needed
 
 // ── CSS Variables injected globally
