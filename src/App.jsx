@@ -64,7 +64,20 @@ function Navbar({ theme, toggleTheme }) {
   const links = ['Services','About','Projects','Contact']
 
   return (
-    <nav style={{ position:'fixed', top:0, left:0, right:0, zIndex:1000, background: scrolled ? 'rgba(10,10,10,0.92)' : 'transparent', backdropFilter: scrolled ? 'blur(20px)' : 'none', borderBottom: scrolled ? '1px solid var(--border)' : 'none', transition:'all 0.4s', padding:'0 clamp(20px,5vw,80px)' }}>
+    <nav style={{ 
+      position:'fixed', 
+      top:0, 
+      left:0, 
+      right:0, 
+      zIndex:1000, 
+      background: scrolled 
+        ? (theme === 'dark' ? 'rgba(10,10,10,0.95)' : 'rgba(248,249,250,0.95)') 
+        : 'transparent', 
+      backdropFilter: scrolled ? 'blur(20px)' : 'none', 
+      borderBottom: scrolled ? '1px solid var(--border)' : 'none', 
+      transition:'all 0.4s',
+      padding:'0 clamp(20px,5vw,80px)' 
+    }}>
       <div style={{ maxWidth:'1200px', margin:'0 auto', display:'flex', alignItems:'center', justifyContent:'space-between', height:'68px' }}>
         <a href="#home" style={{ display:'flex', alignItems:'center', gap:'10px', color:'var(--text)' }}>
           <img 
@@ -74,27 +87,82 @@ function Navbar({ theme, toggleTheme }) {
           />
           <span style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:'15px' }}>Coginx Studio</span>
         </a>
-        
-        {/* rest of your navbar remains same */}
+
         <div className="desktop-nav" style={{ display:'flex', alignItems:'center', gap:'28px' }}>
           {links.map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} style={{ color:'var(--text2)', fontSize:'14px', transition:'color 0.3s' }}
+            <a 
+              key={l} 
+              href={`#${l.toLowerCase()}`} 
+              style={{ color:'var(--text2)', fontSize:'14px', transition:'color 0.3s' }}
               onMouseEnter={e=>e.target.style.color='var(--accent)'}
               onMouseLeave={e=>e.target.style.color='var(--text2)'}
-            >{l}</a>
+            >
+              {l}
+            </a>
           ))}
-          <button onClick={toggleTheme} style={{ background:'var(--surface2)', border:'1px solid var(--border)', borderRadius:'50px', padding:'7px 14px', cursor:'pointer', color:'var(--text)', fontFamily:'var(--font-body)', fontSize:'12px' }}>
+          <button 
+            onClick={toggleTheme} 
+            style={{ 
+              background:'var(--surface2)', 
+              border:'1px solid var(--border)', 
+              borderRadius:'50px', 
+              padding:'7px 14px', 
+              cursor:'pointer', 
+              color:'var(--text)', 
+              fontFamily:'var(--font-body)', 
+              fontSize:'12px' 
+            }}
+          >
             {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
           </button>
         </div>
 
-        <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ display:'none', background:'none', border:'none', color:'var(--text)', fontSize:'22px', cursor:'pointer' }}>☰</button>
+        <button 
+          className="hamburger" 
+          onClick={() => setMenuOpen(!menuOpen)} 
+          style={{ 
+            display:'none', 
+            background:'none', 
+            border:'none', 
+            color:'var(--text)', 
+            fontSize:'22px', 
+            cursor:'pointer' 
+          }}
+        >
+          ☰
+        </button>
       </div>
-      {/* mobile menu remains same */}
+
+      {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{ background:'var(--surface)', borderTop:'1px solid var(--border)', padding:'20px', display:'flex', flexDirection:'column', gap:'16px' }}>
-          {links.map(l => <a key={l} href={`#${l.toLowerCase()}`} onClick={()=>setMenuOpen(false)} style={{ color:'var(--text2)', fontSize:'15px' }}>{l}</a>)}
-          <button onClick={toggleTheme} style={{ background:'var(--surface2)', border:'1px solid var(--border)', borderRadius:'8px', padding:'10px', cursor:'pointer', color:'var(--text)', fontFamily:'var(--font-body)', width:'fit-content' }}>
+        <div style={{ 
+          background: 'var(--surface)', 
+          borderTop:'1px solid var(--border)', 
+          padding:'20px', 
+          display:'flex', 
+          flexDirection:'column', 
+          gap:'16px' 
+        }}>
+          {links.map(l => (
+            <a 
+              key={l} 
+              href={`#${l.toLowerCase()}`} 
+              onClick={()=>setMenuOpen(false)} 
+              style={{ color:'var(--text2)', fontSize:'15px' }}
+            >
+              {l}
+            </a>
+          ))}
+          <button onClick={toggleTheme} style={{ 
+            background:'var(--surface2)', 
+            border:'1px solid var(--border)', 
+            borderRadius:'8px', 
+            padding:'10px', 
+            cursor:'pointer', 
+            color:'var(--text)', 
+            fontFamily:'var(--font-body)', 
+            width:'fit-content' 
+          }}>
             {theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}
           </button>
         </div>
